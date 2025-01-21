@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.9.0/dist/umd/supabase.min.js"></script>
+    <h1>Supabase Example</h1>
+    <button id="loadData">Load Data</button>
+    <div id="data"></div>
+    
+    <script>
+        // Initialize Supabase
+        const supabaseUrl = 'https://ogysuoiptyxilrebflus.supabase.co'; // Replace with your Supabase URL
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9neXN1b2lwdHl4aWxyZWJmbHVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzczOTI4NjIsImV4cCI6MjA1Mjk2ODg2Mn0.uYDcUXPxGKmipXa2ns2Abjoc6eWqMvDi4ZsbbIJlbqA'; // Replace with your Supabase anon key
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Fetch data from Supabase
+        document.getElementById('loadData').onclick = async () => {
+            const { data, error } = await supabase
+                .from('users')  // Replace 'users' with your table name
+                .select('*');
+            
+            if (error) {
+                console.error('Error fetching data:', error);
+                return;
+            }
+            
+            // Display the data
+            const dataDiv = document.getElementById('data');
+            dataDiv.innerHTML = JSON.stringify(data, null, 2);
+        };
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <title>Student Signup</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .signup-container {
+        width: 400px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        max-height: 90vh;
+      }
+      .signup-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .signup-container label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+      .signup-container input,
+      .signup-container textarea,
+      .signup-container select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      .signup-container button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .signup-container button:hover {
+        background-color: #0056b3;
+      }
+      .skills-container,
+      .experience-container {
+        margin-bottom: 15px;
+      }
+      .add-button {
+        display: inline-block;
+        margin: 5px 0;
+        padding: 8px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .add-button:hover {
+        background-color: #218838;
+      }
+      .remove-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px;
+        margin-left: 10px;
+      }
+      .remove-button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signup-container">
+      <h2>Student Signup</h2>
+      <form id="studentSignupForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your Full Name" required />
+
+        <label for="contact">Contact Number</label>
+        <input
+          type="tel"
+          id="contact"
+          placeholder="Your Contact Number"
+          pattern="[0-9]{10}"
+          required
+        />
+
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Your Email Address"
+          required
+        />
+
+        <label for="degree">Current Degree</label>
+        <input
+          type="text"
+          id="degree"
+          placeholder="e.g., B.Tech, M.Sc, etc."
+          required
+        />
+
+        <label for="major">Major</label>
+        <input type="text" id="major" placeholder="e.g., Computer Science" required />
+
+        <label for="year">Year of Study</label>
+        <select id="year" required>
+          <option value="">Select Year</option>
+          <option value="1">1st Year</option>
+          <option value="2">2nd Year</option>
+          <option value="3">3rd Year</option>
+          <option value="4">4th Year</option>
+        </select>
+
+        <label for="institution">Institution Name</label>
+        <input type="text" id="institution" placeholder="Your Institution Name" required />
+
+        <label for="cgpa">GPA/CGPA (0-10)</label>
+        <input
+          type="number"
+          id="cgpa"
+          placeholder="Your GPA/CGPA"
+          step="0.01"
+          min="0"
+          max="10"
+          required
+        />
+
+        <label>Skills and Certifications</label>
+        <div class="skills-container" id="skillsContainer">
+          <input
+            type="text"
+            class="skill-input"
+            placeholder="Skill or Certification"
+            required
+          />
+        </div>
+        <button type="button" class="add-button" id="addSkillButton">
+          Add Skill
+        </button>
+
+        <label>Internship/Work Experience</label>
+        <div class="experience-container" id="experienceContainer">
+          <input
+            type="text"
+            placeholder="Company Name"
+            class="experience-input"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Role"
+            class="experience-input"
+            required
+          />
+          <textarea
+            placeholder="Responsibilities"
+            class="experience-input"
+            required
+          ></textarea>
+        </div>
+        <button type="button" class="add-button" id="addExperienceButton">
+          Add Experience
+        </button>
+
+        <label for="resume">Upload Resume</label>
+        <input type="file" id="resume" accept=".pdf,.doc,.docx" required />
+
+        <label for="portfolio">Portfolio Links</label>
+        <input
+          type="url"
+          id="portfolio"
+          placeholder="GitHub, Personal Website, etc."
+        />
+
+        <label for="jobPreferences">Job Preferences</label>
+        <textarea id="jobPreferences" placeholder="Preferred roles, industries, etc." required></textarea>
+
+        <label for="availability">Availability</label>
+        <input
+          type="text"
+          id="availability"
+          placeholder="Select your availability (Date & Time)"
+          required
+        />
+
+        <label for="referral">Referral Information</label>
+        <input
+          type="text"
+          id="referral"
+          placeholder="How did you hear about us?"
+        />
+
+        <button type="submit">Signup</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+      // Initialize flatpickr for availability field
+      flatpickr("#availability", {
+        enableTime: true,         // Enable time selection
+        dateFormat: "Y-m-d H:i",  // Format: Year-Month-Day Hour:Minute
+        time_24hr: true,          // Use 24-hour format
+      });
+
+      document.getElementById("addSkillButton").addEventListener("click", () => {
+        const skillsContainer = document.getElementById("skillsContainer");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.className = "skill-input";
+        input.placeholder = "Skill or Certification";
+        skillsContainer.appendChild(input);
+      });
+
+      document.getElementById("addExperienceButton").addEventListener("click", () => {
+        const experienceContainer = document.getElementById("experienceContainer");
+        const companyInput = document.createElement("input");
+        companyInput.type = "text";
+        companyInput.placeholder = "Company Name";
+        companyInput.className = "experience-input";
+
+        const roleInput = document.createElement("input");
+        roleInput.type = "text";
+        roleInput.placeholder = "Role";
+        roleInput.className = "experience-input";
+
+        const responsibilitiesInput = document.createElement("textarea");
+        responsibilitiesInput.placeholder = "Responsibilities";
+        responsibilitiesInput.className = "experience-input";
+
+        experienceContainer.appendChild(companyInput);
+        experienceContainer.appendChild(roleInput);
+        experienceContainer.appendChild(responsibilitiesInput);
+      });
+
+      // Submit the form and add data to Supabase
+      document.getElementById("studentSignupForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Collect the form data
+        const name = document.getElementById("name").value;
+        const contact = document.getElementById("contact").value;
+        const email = document.getElementById("email").value;
+        const degree = document.getElementById("degree").value;
+        const major = document.getElementById("major").value;
+        const year = document.getElementById("year").value;
+        const institution = document.getElementById("institution").value;
+        const cgpa = document.getElementById("cgpa").value;
+        const skills = Array.from(document.querySelectorAll(".skill-input")).map(input => input.value);
+        const experiences = Array.from(document.querySelectorAll(".experience-input")).map(input => input.value);
+        const resume = document.getElementById("resume").files[0];
+        const portfolio = document.getElementById("portfolio").value;
+        const jobPreferences = document.getElementById("jobPreferences").value;
+        const availability = document.getElementById("availability").value;
+        const referral = document.getElementById("referral").value;
+
+        // Upload resume to Supabase Storage (optional)
+        let resumeUrl = "";
+        if (resume) {
+          const { data, error } = await supabase.storage
+            .from('resumes')  // Replace with your storage bucket name
+            .upload(resume.name, resume);
+
+          if (error) {
+            console.error("Error uploading resume:", error);
+          } else {
+            resumeUrl = data.Key;  // This is the URL/path to the file in Supabase Storage
+          }
+        }
+
+        // Insert the data into Supabase table
+        const { error } = await supabase.from('students').insert([{
+          name,
+          contact,
+          email,
+          degree,
+          major,
+          year,
+          institution,
+          cgpa,
+          skills,
+          experiences,
+          resumeUrl,
+          portfolio,
+          jobPreferences,
+          availability,
+          referral,
+        }]);
+
+        if (error) {
+          console.error("Error inserting data:", error);
+        } else {
+          alert("Signup details submitted successfully!");
+        }
+      });
+    </script>
+  </body>
+</html>
