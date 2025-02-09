@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+   
+   body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.left {
+    flex: 1;
+    padding: 40px;
+    background: linear-gradient(135deg, #1c1c1c, #2c2c2c);
+    color: #FFFFFF;
+}
+
+.left h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.left ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left ul li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.left ul li .icon {
+    font-size: 20px;
+    color: #FFD700; /* Gold color for icons */
+    margin-right: 15px;
+    margin-top: 2px;
+}
+
+.left ul li .description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #BBBBBB; /* Softer gray for text */
+}
+
+.right {
+    flex: 1;
+    padding: 50px;
+    background: #181818;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: #222;
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.form-group input:focus {
+    border-color: #ffc107;
+    outline: none;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    background-color: #efff12;
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.button:hover {
+    background-color: #d3d850;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+.footer a {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>Welcome to the Placement Portal</h1>
+            <ul>
+                <li>
+                    <div class="icon">&#10004;</div>
+                    <span class="description">Simplify your placement journey with ease.</span>
+                </li>
+                <li>
+                    <div class="icon">&#10004;</div>
+                    <span class="description">Enhance interaction between students and coordinators.</span>
+                </li>
+                <li>
+                    <div class="icon">&#10004;</div>
+                    <span class="description">Apply for jobs and internships effortlessly.</span>
+                </li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="form-container">
+                <h2>Create an Account</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" placeholder="Enter your last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="button">Sign Up</button>
+                </form>
+                <div class="footer">
+                    Already have an account? <a href="#">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
